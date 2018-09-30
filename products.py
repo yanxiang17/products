@@ -3,14 +3,20 @@
 # 存取二維清單
 
 # 讀取檔案
+import os
+
 products = []
-with open('products.csv', 'r', encoding = 'UTF-8') as f:
-	for line in f:
-		if '商品, 價格' in line:
-			continue
-		name, price = line.strip().split(',')
-		products.append([name, price])
-print(products)
+if os.path.isfile('products.csv'): # 檢查檔案
+	print('yeah! 找到檔案了!')
+	with open('products.csv', 'r', encoding = 'UTF-8') as f:
+		for line in f:
+			if '商品, 價格' in line:
+				continue # 繼續
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)
+else:
+	print('找不到檔案......')
 
 # 讓使用者輸入
 while True:
